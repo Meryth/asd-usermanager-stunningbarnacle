@@ -13,14 +13,13 @@ jobs:
     # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/openjdk
     docker:
       - image: cimg/openjdk:11.0
+
+    working_directory: ~/Usermanager
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       # Checkout the code as the first step.
       - checkout 
-      - run:
-          name: ChangeDirectory
-          command: cd ./Usermanager
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
