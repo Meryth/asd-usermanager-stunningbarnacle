@@ -22,7 +22,7 @@ jobs:
 
       - run:
          name: ChangeDirectory
-         command: cd Usermanager
+         command: cd Usermanager && mvn -B -DskipTests clean package
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
