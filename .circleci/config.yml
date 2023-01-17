@@ -22,7 +22,7 @@ jobs:
 
       - run:
          name: ChangeDirectory
-         command: echo "Elna"
+         command: cd ~/Usermanager
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
