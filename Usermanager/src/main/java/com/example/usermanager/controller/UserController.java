@@ -56,22 +56,5 @@ public class UserController {
         return "authPages/user";
     }
 
-    /*
-    @GetMapping("/edit")
-    public String edit(Model model) throws Exception{
-        String username;
-        User user;
-
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (principal instanceof UserDetails) {
-            username = ((UserDetails)principal).getUsername();
-            user = userRepository.findByUsername(username);
-            model.addAttribute("user", user);
-        } else {
-            throw new Exception("User not found");
-        }
-        return "authPages/edit";
-    }*/
 
 }

@@ -29,39 +29,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         //For h2-console
         DBConsole(httpSecurity);
-        /*httpSecurity
-                .authorizeRequests()
-                .antMatchers("/h2-console/**").permitAll()
-                .and()
-                .headers().frameOptions().disable();*/
 
         //For the pages
         httpPage(httpSecurity);
-        /*httpSecurity.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/register").permitAll()
-                .antMatchers("/register/**").permitAll()
-                .antMatchers("/index").permitAll()
-                .antMatchers("/user").hasAnyRole("ADMIN","USER")
-                .and().
-                formLogin(
-                        form -> form
-                                .loginPage("/login")
-                                .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/user")
-                                .permitAll()
-                ).logout(
-                        logout -> logout
-                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                                .permitAll()
-                );*/
+
 
 
         //Session Timeout
         sessionTimeout(httpSecurity);
-        /*httpSecurity.sessionManagement()
-                .maximumSessions(1)
-                .and().invalidSessionUrl("/login?expired");*/
 
         return  httpSecurity.build();
     }
@@ -105,7 +80,6 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    //This function is never used
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth

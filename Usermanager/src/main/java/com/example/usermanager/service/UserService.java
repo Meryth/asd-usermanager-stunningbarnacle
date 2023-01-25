@@ -32,12 +32,6 @@ public class UserService {
     }
 
     public void addUser(User user) throws DBInputException {
-
-        /*User user1 = userRepository.findByUsername(user.getUsername());
-        if (user1 != null) {
-            throw new DBInputException("Der Benutzername ist bereits vergeben!", null);
-        }*/
-
         checkExistingUser(user);
 
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
