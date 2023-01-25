@@ -33,11 +33,12 @@ public class UserService {
 
     public void addUser(User user) throws DBInputException {
 
-        User user1 = userRepository.findByUsername(user.getUsername());
-
+        /*User user1 = userRepository.findByUsername(user.getUsername());
         if (user1 != null) {
             throw new DBInputException("Der Benutzername ist bereits vergeben!", null);
-        }
+        }*/
+
+        checkExistingUser(user);
 
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
@@ -48,22 +49,28 @@ public class UserService {
         }
     }
 
+    public void checkExistingUser(User thisUser)throws DBInputException{
+        if (userRepository.findByUsername(thisUser.getUsername()) != null) {
+            throw new DBInputException("Der Benutzername ist bereits vergeben!", null);
+        }
+    }
+
     public void alterPassword(int id, String currentPassword, String newPassword) throws DBInputException {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
-        User user = userRepository.findByID(id);
+        User NewUser = userRepository.findByID(id);
 
-        if (user == null) {
+        if (NewUser == null) {
             throw new DBInputException(id + " " + bCryptPasswordEncoder.encode(currentPassword) + " " + newPassword, null);
         }
 
-        if (!bCryptPasswordEncoder.matches(currentPassword, user.getPassword())) {
+        if (!bCryptPasswordEncoder.matches(currentPassword, NewUser.getPassword())) {
             throw new DBInputException("Passwort ist nicht korrekt!", null);
         }
 
-        user.setPassword(bCryptPasswordEncoder.encode(newPassword));
+        NewUser.setPassword(bCryptPasswordEncoder.encode(newPassword));
 
-        userRepository.save(user);
+        userRepository.save(NewUser);
     }
 
     public void deleteAccount(int id, String currentPassword) throws DBInputException {

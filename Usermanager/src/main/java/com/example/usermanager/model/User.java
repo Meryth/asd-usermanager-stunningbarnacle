@@ -42,6 +42,7 @@ public class User {
     }
 
     //Getter and Setter
+    /*
     public Integer getId() {
         return id;
     }
@@ -65,15 +66,15 @@ public class User {
     public void setSurname(String surname) {
         this.surname = surname;
     }
-
+    */
     public String getUsername() {
         return username;
     }
-
+    /*
     public void setUsername(String username) {
         this.username = username;
     }
-
+    */
     public String getPassword() {
         return password;
     }

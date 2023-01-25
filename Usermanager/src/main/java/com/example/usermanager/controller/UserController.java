@@ -56,6 +56,7 @@ public class UserController {
         return "authPages/user";
     }
 
+    /*
     @GetMapping("/edit")
     public String edit(Model model) throws Exception{
         String username;
@@ -71,5 +72,6 @@ public class UserController {
             throw new Exception("User not found");
         }
         return "authPages/edit";
-    }
+    }*/
+
 }
